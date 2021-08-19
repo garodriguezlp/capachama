@@ -44,6 +44,9 @@
     "clientThemeVariant": "",
     "languages": ["en", "es"],
     "entities": ["Employee", "Project", "PayrollChangeType", "PayrollChangeHistory"],
-    "lastLiquibaseTimestamp": 1629337818000
+    "lastLiquibaseTimestamp": 1629337818000,
+    "herokuAppName": "capachama",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "11"
   }
 }
