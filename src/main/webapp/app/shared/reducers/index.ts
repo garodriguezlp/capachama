@@ -11,6 +11,14 @@ import activate, { ActivateState } from 'app/modules/account/activate/activate.r
 import password, { PasswordState } from 'app/modules/account/password/password.reducer';
 import settings, { SettingsState } from 'app/modules/account/settings/settings.reducer';
 import passwordReset, { PasswordResetState } from 'app/modules/account/password-reset/password-reset.reducer';
+// prettier-ignore
+import employee from 'app/entities/employee/employee.reducer';
+// prettier-ignore
+import project from 'app/entities/project/project.reducer';
+// prettier-ignore
+import payrollChangeType from 'app/entities/payroll-change-type/payroll-change-type.reducer';
+// prettier-ignore
+import payrollChangeHistory from 'app/entities/payroll-change-history/payroll-change-history.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
@@ -24,6 +32,10 @@ const rootReducer = {
   passwordReset,
   password,
   settings,
+  employee,
+  project,
+  payrollChangeType,
+  payrollChangeHistory,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 };

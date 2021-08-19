@@ -1,0 +1,38 @@
+entity Employee {
+	firstName String,
+	lastName String,
+	hireDate Instant
+}
+
+entity Project {
+	name String,
+	description String,
+	startDate Instant
+}
+
+entity PayrollChangeType {
+	name String,
+	description String
+}
+
+entity PayrollChangeHistory {
+	startDate Instant,
+	endDate Instant,
+	comments String
+}
+
+relationship OneToOne {
+	PayrollChangeHistory{employee} to Employee,
+	PayrollChangeHistory{manager} to Employee,
+	PayrollChangeHistory{project} to Project,
+	PayrollChangeHistory{changeType} to PayrollChangeType
+}
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto all with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

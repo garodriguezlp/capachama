@@ -1,0 +1,25 @@
+{
+  "capachamaApp": {
+    "payrollChangeType": {
+      "home": {
+        "title": "Payroll Change Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payroll Change Type",
+        "createOrEditLabel": "Create or edit a Payroll Change Type",
+        "notFound": "No Payroll Change Types found"
+      },
+      "created": "A new Payroll Change Type is created with identifier {{ param }}",
+      "updated": "A Payroll Change Type is updated with identifier {{ param }}",
+      "deleted": "A Payroll Change Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payroll Change Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Payroll Change Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

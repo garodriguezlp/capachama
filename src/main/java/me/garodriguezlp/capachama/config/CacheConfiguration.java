@@ -48,6 +48,10 @@ public class CacheConfiguration {
             createCache(cm, me.garodriguezlp.capachama.domain.User.class.getName());
             createCache(cm, me.garodriguezlp.capachama.domain.Authority.class.getName());
             createCache(cm, me.garodriguezlp.capachama.domain.User.class.getName() + ".authorities");
+            createCache(cm, me.garodriguezlp.capachama.domain.Employee.class.getName());
+            createCache(cm, me.garodriguezlp.capachama.domain.Project.class.getName());
+            createCache(cm, me.garodriguezlp.capachama.domain.PayrollChangeType.class.getName());
+            createCache(cm, me.garodriguezlp.capachama.domain.PayrollChangeHistory.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

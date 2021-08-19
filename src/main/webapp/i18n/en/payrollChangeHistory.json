@@ -1,0 +1,30 @@
+{
+  "capachamaApp": {
+    "payrollChangeHistory": {
+      "home": {
+        "title": "Payroll Change Histories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Payroll Change History",
+        "createOrEditLabel": "Create or edit a Payroll Change History",
+        "notFound": "No Payroll Change Histories found"
+      },
+      "created": "A new Payroll Change History is created with identifier {{ param }}",
+      "updated": "A Payroll Change History is updated with identifier {{ param }}",
+      "deleted": "A Payroll Change History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Payroll Change History {{ id }}?"
+      },
+      "detail": {
+        "title": "Payroll Change History"
+      },
+      "id": "ID",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "comments": "Comments",
+      "employee": "Employee",
+      "manager": "Manager",
+      "project": "Project",
+      "changeType": "Change Type"
+    }
+  }
+}
