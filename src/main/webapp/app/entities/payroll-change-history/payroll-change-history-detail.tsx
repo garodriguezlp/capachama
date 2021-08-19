@@ -30,23 +30,13 @@ export const PayrollChangeHistoryDetail = (props: RouteComponentProps<{ id: stri
           </dt>
           <dd>{payrollChangeHistoryEntity.id}</dd>
           <dt>
-            <span id="startDate">
-              <Translate contentKey="capachamaApp.payrollChangeHistory.startDate">Start Date</Translate>
+            <span id="date">
+              <Translate contentKey="capachamaApp.payrollChangeHistory.date">Date</Translate>
             </span>
           </dt>
           <dd>
-            {payrollChangeHistoryEntity.startDate ? (
-              <TextFormat value={payrollChangeHistoryEntity.startDate} type="date" format={APP_DATE_FORMAT} />
-            ) : null}
-          </dd>
-          <dt>
-            <span id="endDate">
-              <Translate contentKey="capachamaApp.payrollChangeHistory.endDate">End Date</Translate>
-            </span>
-          </dt>
-          <dd>
-            {payrollChangeHistoryEntity.endDate ? (
-              <TextFormat value={payrollChangeHistoryEntity.endDate} type="date" format={APP_DATE_FORMAT} />
+            {payrollChangeHistoryEntity.date ? (
+              <TextFormat value={payrollChangeHistoryEntity.date} type="date" format={APP_DATE_FORMAT} />
             ) : null}
           </dd>
           <dt>

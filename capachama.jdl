@@ -16,8 +16,7 @@ entity PayrollChangeType {
 }
 
 entity PayrollChangeHistory {
-	startDate Instant,
-	endDate Instant,
+	date Instant,
 	comments String
 }
 

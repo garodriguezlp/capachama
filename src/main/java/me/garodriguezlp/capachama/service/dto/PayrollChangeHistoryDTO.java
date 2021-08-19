@@ -11,9 +11,7 @@ public class PayrollChangeHistoryDTO implements Serializable {
 
     private Long id;
 
-    private Instant startDate;
-
-    private Instant endDate;
+    private Instant date;
 
     private String comments;
 
@@ -33,20 +31,12 @@ public class PayrollChangeHistoryDTO implements Serializable {
         this.id = id;
     }
 
-    public Instant getStartDate() {
-        return startDate;
+    public Instant getDate() {
+        return date;
     }
 
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
-
-    public Instant getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Instant endDate) {
-        this.endDate = endDate;
+    public void setDate(Instant date) {
+        this.date = date;
     }
 
     public String getComments() {
@@ -115,8 +105,7 @@ public class PayrollChangeHistoryDTO implements Serializable {
     public String toString() {
         return "PayrollChangeHistoryDTO{" +
             "id=" + getId() +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
+            ", date='" + getDate() + "'" +
             ", comments='" + getComments() + "'" +
             ", employee=" + getEmployee() +
             ", manager=" + getManager() +

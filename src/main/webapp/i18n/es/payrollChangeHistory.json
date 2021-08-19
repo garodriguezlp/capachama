@@ -18,8 +18,7 @@
         "title": "Payroll Change History"
       },
       "id": "ID",
-      "startDate": "Start Date",
-      "endDate": "End Date",
+      "date": "Date",
       "comments": "Comments",
       "employee": "Employee",
       "manager": "Manager",

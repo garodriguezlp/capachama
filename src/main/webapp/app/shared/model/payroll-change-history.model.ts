@@ -5,8 +5,7 @@ import { IPayrollChangeType } from 'app/shared/model/payroll-change-type.model';
 
 export interface IPayrollChangeHistory {
   id?: number;
-  startDate?: string | null;
-  endDate?: string | null;
+  date?: string | null;
   comments?: string | null;
   employee?: IEmployee | null;
   manager?: IEmployee | null;

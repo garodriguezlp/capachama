@@ -52,8 +52,7 @@ export const PayrollChangeHistoryUpdate = (props: RouteComponentProps<{ id: stri
   }, [updateSuccess]);
 
   const saveEntity = values => {
-    values.startDate = convertDateTimeToServer(values.startDate);
-    values.endDate = convertDateTimeToServer(values.endDate);
+    values.date = convertDateTimeToServer(values.date);
 
     const entity = {
       ...payrollChangeHistoryEntity,
@@ -74,13 +73,11 @@ export const PayrollChangeHistoryUpdate = (props: RouteComponentProps<{ id: stri
   const defaultValues = () =>
     isNew
       ? {
-          startDate: displayDefaultDateTime(),
-          endDate: displayDefaultDateTime(),
+          date: displayDefaultDateTime(),
         }
       : {
           ...payrollChangeHistoryEntity,
-          startDate: convertDateTimeFromServer(payrollChangeHistoryEntity.startDate),
-          endDate: convertDateTimeFromServer(payrollChangeHistoryEntity.endDate),
+          date: convertDateTimeFromServer(payrollChangeHistoryEntity.date),
           employeeId: payrollChangeHistoryEntity?.employee?.id,
           managerId: payrollChangeHistoryEntity?.manager?.id,
           projectId: payrollChangeHistoryEntity?.project?.id,
@@ -115,18 +112,10 @@ export const PayrollChangeHistoryUpdate = (props: RouteComponentProps<{ id: stri
                 />
               ) : null}
               <ValidatedField
-                label={translate('capachamaApp.payrollChangeHistory.startDate')}
-                id="payroll-change-history-startDate"
-                name="startDate"
-                data-cy="startDate"
-                type="datetime-local"
-                placeholder="YYYY-MM-DD HH:mm"
-              />
-              <ValidatedField
-                label={translate('capachamaApp.payrollChangeHistory.endDate')}
-                id="payroll-change-history-endDate"
-                name="endDate"
-                data-cy="endDate"
+                label={translate('capachamaApp.payrollChangeHistory.date')}
+                id="payroll-change-history-date"
+                name="date"
+                data-cy="date"
                 type="datetime-local"
                 placeholder="YYYY-MM-DD HH:mm"
               />

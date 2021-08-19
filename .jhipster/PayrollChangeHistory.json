@@ -2,11 +2,7 @@
   "name": "PayrollChangeHistory",
   "fields": [
     {
-      "fieldName": "startDate",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "endDate",
+      "fieldName": "date",
       "fieldType": "Instant"
     },
     {

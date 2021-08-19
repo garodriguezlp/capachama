@@ -21,11 +21,8 @@ public class PayrollChangeHistory implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "start_date")
-    private Instant startDate;
-
-    @Column(name = "end_date")
-    private Instant endDate;
+    @Column(name = "date")
+    private Instant date;
 
     @Column(name = "comments")
     private String comments;
@@ -60,30 +57,17 @@ public class PayrollChangeHistory implements Serializable {
         return this;
     }
 
-    public Instant getStartDate() {
-        return this.startDate;
+    public Instant getDate() {
+        return this.date;
     }
 
-    public PayrollChangeHistory startDate(Instant startDate) {
-        this.startDate = startDate;
+    public PayrollChangeHistory date(Instant date) {
+        this.date = date;
         return this;
     }
 
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
-
-    public Instant getEndDate() {
-        return this.endDate;
-    }
-
-    public PayrollChangeHistory endDate(Instant endDate) {
-        this.endDate = endDate;
-        return this;
-    }
-
-    public void setEndDate(Instant endDate) {
-        this.endDate = endDate;
+    public void setDate(Instant date) {
+        this.date = date;
     }
 
     public String getComments() {
@@ -175,8 +159,7 @@ public class PayrollChangeHistory implements Serializable {
     public String toString() {
         return "PayrollChangeHistory{" +
             "id=" + getId() +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
+            ", date='" + getDate() + "'" +
             ", comments='" + getComments() + "'" +
             "}";
     }

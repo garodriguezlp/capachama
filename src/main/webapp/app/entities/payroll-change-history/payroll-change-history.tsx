@@ -103,11 +103,8 @@ export const PayrollChangeHistory = (props: RouteComponentProps<{ url: string }>
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="capachamaApp.payrollChangeHistory.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('startDate')}>
-                  <Translate contentKey="capachamaApp.payrollChangeHistory.startDate">Start Date</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('endDate')}>
-                  <Translate contentKey="capachamaApp.payrollChangeHistory.endDate">End Date</Translate> <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={sort('date')}>
+                  <Translate contentKey="capachamaApp.payrollChangeHistory.date">Date</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('comments')}>
                   <Translate contentKey="capachamaApp.payrollChangeHistory.comments">Comments</Translate> <FontAwesomeIcon icon="sort" />
@@ -137,13 +134,8 @@ export const PayrollChangeHistory = (props: RouteComponentProps<{ url: string }>
                     </Button>
                   </td>
                   <td>
-                    {payrollChangeHistory.startDate ? (
-                      <TextFormat type="date" value={payrollChangeHistory.startDate} format={APP_DATE_FORMAT} />
-                    ) : null}
-                  </td>
-                  <td>
-                    {payrollChangeHistory.endDate ? (
-                      <TextFormat type="date" value={payrollChangeHistory.endDate} format={APP_DATE_FORMAT} />
+                    {payrollChangeHistory.date ? (
+                      <TextFormat type="date" value={payrollChangeHistory.date} format={APP_DATE_FORMAT} />
                     ) : null}
                   </td>
                   <td>{payrollChangeHistory.comments}</td>

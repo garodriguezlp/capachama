@@ -33,11 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class PayrollChangeHistoryResourceIT {
 
-    private static final Instant DEFAULT_START_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_START_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-
-    private static final Instant DEFAULT_END_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_END_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String DEFAULT_COMMENTS = "AAAAAAAAAA";
     private static final String UPDATED_COMMENTS = "BBBBBBBBBB";
@@ -69,10 +66,7 @@ class PayrollChangeHistoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PayrollChangeHistory createEntity(EntityManager em) {
-        PayrollChangeHistory payrollChangeHistory = new PayrollChangeHistory()
-            .startDate(DEFAULT_START_DATE)
-            .endDate(DEFAULT_END_DATE)
-            .comments(DEFAULT_COMMENTS);
+        PayrollChangeHistory payrollChangeHistory = new PayrollChangeHistory().date(DEFAULT_DATE).comments(DEFAULT_COMMENTS);
         return payrollChangeHistory;
     }
 
@@ -83,10 +77,7 @@ class PayrollChangeHistoryResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PayrollChangeHistory createUpdatedEntity(EntityManager em) {
-        PayrollChangeHistory payrollChangeHistory = new PayrollChangeHistory()
-            .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE)
-            .comments(UPDATED_COMMENTS);
+        PayrollChangeHistory payrollChangeHistory = new PayrollChangeHistory().date(UPDATED_DATE).comments(UPDATED_COMMENTS);
         return payrollChangeHistory;
     }
 
@@ -113,8 +104,7 @@ class PayrollChangeHistoryResourceIT {
         List<PayrollChangeHistory> payrollChangeHistoryList = payrollChangeHistoryRepository.findAll();
         assertThat(payrollChangeHistoryList).hasSize(databaseSizeBeforeCreate + 1);
         PayrollChangeHistory testPayrollChangeHistory = payrollChangeHistoryList.get(payrollChangeHistoryList.size() - 1);
-        assertThat(testPayrollChangeHistory.getStartDate()).isEqualTo(DEFAULT_START_DATE);
-        assertThat(testPayrollChangeHistory.getEndDate()).isEqualTo(DEFAULT_END_DATE);
+        assertThat(testPayrollChangeHistory.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testPayrollChangeHistory.getComments()).isEqualTo(DEFAULT_COMMENTS);
     }
 
@@ -153,8 +143,7 @@ class PayrollChangeHistoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(payrollChangeHistory.getId().intValue())))
-            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].comments").value(hasItem(DEFAULT_COMMENTS)));
     }
 
@@ -170,8 +159,7 @@ class PayrollChangeHistoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(payrollChangeHistory.getId().intValue()))
-            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
-            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.comments").value(DEFAULT_COMMENTS));
     }
 
@@ -194,7 +182,7 @@ class PayrollChangeHistoryResourceIT {
         PayrollChangeHistory updatedPayrollChangeHistory = payrollChangeHistoryRepository.findById(payrollChangeHistory.getId()).get();
         // Disconnect from session so that the updates on updatedPayrollChangeHistory are not directly saved in db
         em.detach(updatedPayrollChangeHistory);
-        updatedPayrollChangeHistory.startDate(UPDATED_START_DATE).endDate(UPDATED_END_DATE).comments(UPDATED_COMMENTS);
+        updatedPayrollChangeHistory.date(UPDATED_DATE).comments(UPDATED_COMMENTS);
         PayrollChangeHistoryDTO payrollChangeHistoryDTO = payrollChangeHistoryMapper.toDto(updatedPayrollChangeHistory);
 
         restPayrollChangeHistoryMockMvc
@@ -209,8 +197,7 @@ class PayrollChangeHistoryResourceIT {
         List<PayrollChangeHistory> payrollChangeHistoryList = payrollChangeHistoryRepository.findAll();
         assertThat(payrollChangeHistoryList).hasSize(databaseSizeBeforeUpdate);
         PayrollChangeHistory testPayrollChangeHistory = payrollChangeHistoryList.get(payrollChangeHistoryList.size() - 1);
-        assertThat(testPayrollChangeHistory.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testPayrollChangeHistory.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testPayrollChangeHistory.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testPayrollChangeHistory.getComments()).isEqualTo(UPDATED_COMMENTS);
     }
 
@@ -295,7 +282,7 @@ class PayrollChangeHistoryResourceIT {
         PayrollChangeHistory partialUpdatedPayrollChangeHistory = new PayrollChangeHistory();
         partialUpdatedPayrollChangeHistory.setId(payrollChangeHistory.getId());
 
-        partialUpdatedPayrollChangeHistory.startDate(UPDATED_START_DATE).endDate(UPDATED_END_DATE);
+        partialUpdatedPayrollChangeHistory.date(UPDATED_DATE).comments(UPDATED_COMMENTS);
 
         restPayrollChangeHistoryMockMvc
             .perform(
@@ -309,9 +296,8 @@ class PayrollChangeHistoryResourceIT {
         List<PayrollChangeHistory> payrollChangeHistoryList = payrollChangeHistoryRepository.findAll();
         assertThat(payrollChangeHistoryList).hasSize(databaseSizeBeforeUpdate);
         PayrollChangeHistory testPayrollChangeHistory = payrollChangeHistoryList.get(payrollChangeHistoryList.size() - 1);
-        assertThat(testPayrollChangeHistory.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testPayrollChangeHistory.getEndDate()).isEqualTo(UPDATED_END_DATE);
-        assertThat(testPayrollChangeHistory.getComments()).isEqualTo(DEFAULT_COMMENTS);
+        assertThat(testPayrollChangeHistory.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testPayrollChangeHistory.getComments()).isEqualTo(UPDATED_COMMENTS);
     }
 
     @Test
@@ -326,7 +312,7 @@ class PayrollChangeHistoryResourceIT {
         PayrollChangeHistory partialUpdatedPayrollChangeHistory = new PayrollChangeHistory();
         partialUpdatedPayrollChangeHistory.setId(payrollChangeHistory.getId());
 
-        partialUpdatedPayrollChangeHistory.startDate(UPDATED_START_DATE).endDate(UPDATED_END_DATE).comments(UPDATED_COMMENTS);
+        partialUpdatedPayrollChangeHistory.date(UPDATED_DATE).comments(UPDATED_COMMENTS);
 
         restPayrollChangeHistoryMockMvc
             .perform(
@@ -340,8 +326,7 @@ class PayrollChangeHistoryResourceIT {
         List<PayrollChangeHistory> payrollChangeHistoryList = payrollChangeHistoryRepository.findAll();
         assertThat(payrollChangeHistoryList).hasSize(databaseSizeBeforeUpdate);
         PayrollChangeHistory testPayrollChangeHistory = payrollChangeHistoryList.get(payrollChangeHistoryList.size() - 1);
-        assertThat(testPayrollChangeHistory.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testPayrollChangeHistory.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testPayrollChangeHistory.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testPayrollChangeHistory.getComments()).isEqualTo(UPDATED_COMMENTS);
     }
 

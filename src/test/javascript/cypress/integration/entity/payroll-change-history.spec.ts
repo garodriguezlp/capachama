@@ -97,11 +97,9 @@ describe('PayrollChangeHistory e2e test', () => {
     cy.get(entityCreateButtonSelector).click({ force: true });
     cy.getEntityCreateUpdateHeading('PayrollChangeHistory');
 
-    cy.get(`[data-cy="startDate"]`).type('2021-08-18T07:21').should('have.value', '2021-08-18T07:21');
+    cy.get(`[data-cy="date"]`).type('2021-08-18T07:21').should('have.value', '2021-08-18T07:21');
 
-    cy.get(`[data-cy="endDate"]`).type('2021-08-18T03:07').should('have.value', '2021-08-18T03:07');
-
-    cy.get(`[data-cy="comments"]`).type('Bedfordshire').should('have.value', 'Bedfordshire');
+    cy.get(`[data-cy="comments"]`).type('initiative Chair Movies').should('have.value', 'initiative Chair Movies');
 
     cy.setFieldSelectToLastOfEntity('employee');
 
